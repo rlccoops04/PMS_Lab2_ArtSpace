@@ -70,11 +70,17 @@ fun ArtSpace_ImageAndButtons(modifier: Modifier = Modifier) {
             Text(text = descr)
         }
         Row {
-            Button(onClick = { /*TODO*/ }) {
-                
+            Button(onClick = {
+                currState--;
+                if(currState < 0) currState = 3
+            }) {
+                Text(text = "Previous")
             }
-            Button(onClick = { /*TODO*/ }) {
-                
+            Button(onClick = {
+                currState++;
+                if(currState > 3) currState = 0
+            }) {
+                Text(text = "Next")
             }
         }
     }
