@@ -4,11 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -24,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.artspace.ui.theme.ArtSpaceTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,10 +43,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Preview()
+@Preview(showBackground = true)
 @Composable
 fun ArtSpace_app(modifier: Modifier = Modifier) {
-    ArtSpace_ImageAndButtons()
+    ArtSpace_ImageAndButtons(modifier = Modifier
+        .fillMaxSize())
 }
 
 @Composable
@@ -61,24 +68,36 @@ fun ArtSpace_ImageAndButtons(modifier: Modifier = Modifier) {
         2 -> "Author2"
         else -> "Author3"
     }
-    Column () {
-        Column {
-            Image(painter = painterResource(imageResource), contentDescription = currState.toString())
+    Column (modifier = Modifier.fillMaxSize().padding(20.dp),horizontalAlignment = Alignment.CenterHorizontally) {
+        Spacer(modifier = Modifier.height(150.dp))
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(250.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Image(modifier = Modifier.fillMaxSize(),painter = painterResource(imageResource), contentDescription = currState.toString())
         }
-        Column {
-            Text(text = title)
-            Text(text = descr)
+        Spacer(modifier = Modifier.height(50.dp))
+        Column (
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(text = title, fontSize = 50.sp)
+            Text(text = descr, fontSize = 40.sp)
         }
-        Row {
-            Button(onClick = {
+        Spacer(modifier = Modifier.height(50.dp))
+        Row (modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween){
+            Button(modifier = Modifier.height(50.dp),onClick = {
                 currState--;
-                if(currState < 0) currState = 3
+                if(currState < 1) currState = 1
             }) {
                 Text(text = "Previous")
             }
-            Button(onClick = {
+            Button(modifier = Modifier.height(50.dp),onClick = {
                 currState++;
-                if(currState > 3) currState = 0
+                if(currState > 3) currState = 3
             }) {
                 Text(text = "Next")
             }
