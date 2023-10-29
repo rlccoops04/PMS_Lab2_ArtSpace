@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Art Space</string>
+    <string name="string1">Image1</string>
+    <string name="title1">Image1</string>
+    <string name="descr1">Author1</string>
 </resources>

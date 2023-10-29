@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -43,6 +44,38 @@ fun ArtSpace_app(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ArtSpace_ImageAndButtons() {
-
+fun ArtSpace_ImageAndButtons(modifier: Modifier = Modifier) {
+    var currState by remember { mutableStateOf(1) }
+    val imageResource = when(currState) {
+        1 -> R.drawable.art1
+        2 -> R.drawable.art2
+        else -> R.drawable.art3
+    }
+    val title = when(currState) {
+        1 -> "Title1"
+        2 -> "Title2"
+        else -> "Title3"
+    }
+    val descr = when(currState) {
+        1 -> "Author1"
+        2 -> "Author2"
+        else -> "Author3"
+    }
+    Column () {
+        Column {
+            Image(painter = painterResource(imageResource), contentDescription = currState.toString())
+        }
+        Column {
+            Text(text = title)
+            Text(text = descr)
+        }
+        Row {
+            Button(onClick = { /*TODO*/ }) {
+                
+            }
+            Button(onClick = { /*TODO*/ }) {
+                
+            }
+        }
+    }
 }
